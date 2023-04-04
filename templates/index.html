@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% block content %}
+<section>
+    <br>
+    <div class="content">
+        <div id="menucontainer" class="section-box">
+            <div class="nav-bng border-rad"></div>
+            <nav class="center">
+                <div class="selected navbar-item border-rad center">
+                    <a href="/" class="navlink fontsize1">One Rep Max Calc</a>
+                </div>
+                <div class="navbar-item center border-rad">
+                    <a href="/percentCalc" class="navlink fontsize1">Percent Calc</a>
+                </div>
+                <div class="navbar-item center border-rad">
+                    <a href="/dotsCalc" class="navlink fontsize1">DOTS Calc</a>
+                </div>
+            </nav>
+        </div>
+
+        <br>
+        <!-- submission -->
+        <div class="section-box padding white border-rad">
+            <h2 class="left bold fontsize3">One Rep Max Calculator</h2>
+            <h2 class="left fontsize2">Calculate your one-rep max.</h2>
+            <h2 class="left light fontsize1">A one-rep max is the highest weight you can perform on an exercise for one repetition. 
+                The calculator becomes less accurate as the repetitions go up, so for accurate results, go for low reps (1-5) high intensity (80%-100%) of your one-rep max.</h2>
+            <div class="space"></div>
+            <!-- form -->
+            <form id="oneRepMaxCalc" method="post" class="divright">
+                <!-- weight -->
+                <div style="display: block; overflow: auto;">
+                    <label style="padding-right: 2%; padding-top: 5px;" class='weight-label divleft fontsize1 bold' for="weight">Weight</label>   
+                    <input class="border-rad-left form-input" type="number" id="weight" name="weight" min='1'> 
+                    <select class="border-rad-right pound-select" id="weightpound" name="weightpound">
+                        <option value="lbs">lbs</option>
+                        <option value="kg">kg</option>
+                    </select>  
+                </div>
+
+                <div class="space"></div>
+                <!-- repetitions -->
+                <div style="display: block; overflow: auto;">
+                    <label style="padding-right: 2%; padding-top: 5px;" class='weight-label divleft fontsize1 bold' for="repetition">Repetitions</label>   
+                    <input class="border-rad form-input" type="number" id="repetition" name="repetition" min='1' max='30'> 
+                </div>
+    
+                <div class="space"></div>
+                <!-- submit -->
+                <button type="submit" class="button divright fontsize1 bold btn btn-primary" value="Submit">Submit</input>
+            </form>
+        </div>
+        <br>
+        <div id="percentages" class="section-box padding white border-rad"> 
+            <!-- table header text -->
+            <h2 id="tableHeader" class="left bold fontsize2">Repetitions Percentages of 1RM</h2>
+            <h2 id="tableSubHead" class="left fontsize1" >Based on your weight and repetitions, how is your max 1RM?</h2>
+            <div class="space"></div>
+            <!-- visible table -->
+            <table id="firstTable" class="table">
+                <thead class="table-head-font" style="width:100%">
+                    <tr>
+                        <th style="width:50%">Repetitions of %</th>
+                        <th style="width:50%">% of 1RM</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body-font">
+                    <tr>
+                        <td>1</td>
+                        <td>100%</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>97%</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>94%</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>92%</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>89%</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>86%</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>81%</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>75%</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>69%</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>61%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- hidden table with values -->
+            <table id="secondTable" class="table" style="display:none">
+                <thead class="table-head-font" style="width:100%">
+                    <tr>
+                        <th style="width:33%;">Repetitions of %</th>
+                        <th style="width:33%;">Weight</th>
+                        <th style="width:33%;">Percentage of 1RM</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body-font">
+                    <tr>
+                        <td>1</td>
+                        <td class="tableWeight"></td>
+                        <td class="tablePerc"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="tableWeight"></td>
+                        <td class="tablePerc"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td class="tableWeight"></td>
+                        <td class="tablePerc"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td class="tableWeight"></td>
+                        <td class="tablePerc"></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td class="tableWeight"></td>
+                        <td class="tablePerc"></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td class="tableWeight"></td>
+                        <td class="tablePerc"></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td class="tableWeight"></td>
+                        <td class="tablePerc"></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td class="tableWeight"></td>
+                        <td class="tablePerc"></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td class="tableWeight"></td>
+                        <td class="tablePerc"></td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td class="tableWeight"></td>
+                        <td class="tablePerc"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</section>
+<script>
+    let form = document.getElementById("oneRepMaxCalc")
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+    
+        let weight = document.getElementById("weight").value;
+        let repetition = document.getElementById("repetition").value;
+        let tableHeader = document.getElementById("tableHeader");
+        let tableSubHeader = document.getElementById("tableSubHead");
+        let weightpound = document.getElementById("weightpound").value;
+        if (repetition.value == "" || weight.value == ""){
+            
+        } else {
+            
+            let oneRPM = weight / ((1.0278) - (0.0278 * repetition))
+
+            const reps = [1,2,3,4,5,6,8,10,12,15]
+
+            var t1; var t2; var t3; var t4; var t5; var t6; var t7; var t8; var t9; var t10;
+            const tiers = [t1,t2,t3,t4,t5,t6,t7,t8,t9,t10]
+
+            for(let i=0; i < reps.length; i++){
+                tiers[i] = oneRPM * (((1.0278) - (0.0278 * reps[i])))
+            }
+            
+            const rows1 = document.getElementsByClassName("tableWeight");
+            const rows2 = document.getElementsByClassName("tablePerc");
+
+            for(let i = 0; i < reps.length; i++){
+                rows1[i].innerHTML = tiers[i].toFixed(1) + " " + weightpound;
+                rows2[i].innerHTML = ((tiers[i] / oneRPM) * 100).toFixed(0) + "%";
+            }
+            
+            tableHeader.innerHTML = "Your one rep max is " + oneRPM.toFixed(1) + " " + weightpound;
+            tableSubHead.innerHTML = "Based on your " + repetition + " repetitions of " + weight + weightpound + " it calculated this one rep max."
+            document.getElementById("firstTable").style.display = "none";
+            document.getElementById("secondTable").style.display = "table";
+
+        }
+
+    })
+</script>
+{% endblock %}

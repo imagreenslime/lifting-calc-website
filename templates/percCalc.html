@@ -1,0 +1,378 @@
+{% extends "base.html" %}
+{% block percent %}
+
+<section>
+    <br>
+    <div class="content">
+        <div id="menucontainer" class="section-box">
+            <div class="nav-bng border-rad"></div>
+            <nav class="center">
+                <div class="navbar-item border-rad center">
+                    <a href="/" class="navlink fontsize1">One Rep Max Calc</a>
+                </div>
+                <div class="selected navbar-item center border-rad">
+                    <a href="/percentCalc" class="navlink fontsize1">Percent Calc</a>
+                </div>
+                <div class="navbar-item center border-rad">
+                    <a href="/dotsCalc" class="navlink fontsize1">DOTS Calc</a>
+                </div>
+            </nav>
+        </div>
+        <br>
+        <!-- submission -->
+        <div class="section-box white padding border-rad">
+            <h2 class="left bold fontsize3">Repetitions Needed to hit 1RM</h2>
+            <h2 class="left light fontsize1">After adding in your one-rep max, it shows the percentages of your max weight lifted and the following repetitions, adding them up in the one-rep max calculator. 
+                It allows you to see how many reps of a specific weight you would need to do in order to reach a certain intensity.
+            </h2>
+            <div class="space"></div>
+            <!-- form -->
+            <form id="percentCalc" method="post">
+
+                <div style="display: block; overflow: auto;">
+                    <label style="padding-right: 2%; padding-top: 5px;" class='weight-label divleft fontsize1 bold' for="onerpm">One-Rep Max</label>   
+                    <input class="border-rad-left form-input" type="number" id="onerpm" name="onerpm" min='1'> 
+                    <select class="border-rad-right pound-select" id="onerpmpound" name="onerpmpound">
+                        <option value="lbs">lbs</option>
+                        <option value="kg">kg</option>
+                    </select>  
+
+                </div>
+                <div class="space"></div>
+                <button type="submit" class="button divright fontsize1 bold btn btn-primary" value="Submit">Submit</input>
+            </form>
+        </div>
+        <br>
+        <div class="section-box white padding border-rad"> 
+            <!-- table header text -->
+            <h2 class="bold fontsize2" id="tableHeader2">Intesity of Repetitions to a % of your 1RM</h2>
+            <h2 class="fontsize1" id="tableHeader2">How many reps of your one-rep max do you need to hit a certain intensity?</h2>
+            <div class="space"></div>
+            <!-- visible table -->
+            <table id="firstTable" class="table-body-font table">
+                <thead style="width:100%">
+                    <tr>
+                        <th style="width:15%">% of RPM</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>8</th>
+                        <th>10</th>
+                        <th>12</th>
+                        <th>15</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th style="width:20%" class="percentNum">100%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%" class="percentNum">97.5%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%" class="percentNum">95%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%" class="percentNum">92.5%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%" class="percentNum">90%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%" class="percentNum">87.5%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%" class="percentNum">85%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%" class="percentNum">80%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%" class="percentNum">75%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- hidden table with content -->
+            <table id="secondTable" class="table-body-font table" style="display:none">
+                <thead style="width:100%">
+                    <tr>
+                        <th style="width:15%">% of RPM</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>8</th>
+                        <th>10</th>
+                        <th>12</th>
+                        <th>15</th>
+                    </tr>
+                </thead>
+                <tbody id="tablePercentages">
+                    <tr>
+                        <th style="width:15%">100%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%">97.5%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%">95%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%">92.5%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%">90%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%">87.5%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%">85%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%">80%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th style="width:15%">75%</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</section>
+
+<script>
+    let percCalc = document.getElementById("percentCalc")
+
+    percCalc.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let oneRPM = document.getElementById("onerpm");
+        if (oneRPM.value == ""){
+
+        } else {
+            // content on the table
+            const reps = [0,1,2,3,4,5,6,8,10,12,15]
+            const perc = [100,97.5, 95, 92.5, 90, 87.5, 85, 80, 75, 70]
+            var t1; var t2; var t3; var t4; var t5; var t6; var t7; var t8; var t9;
+            const tiers = [t1,t2,t3,t4,t5,t6,t7,t8,t9];
+            
+            var percNum = document.getElementsByClassName("percentNum")
+            let weight = document.getElementById("onerpmpound").value;
+            var rows = document.getElementById('tablePercentages').rows;
+
+            for(i=0; i < rows.length; i++){
+                // left side
+                let pounds = ((oneRPM.value * perc[i])/100).toFixed(0)
+                rows[i].cells[0].innerText = percNum[i].innerText + " (" + pounds + " " + weight + ")"
+                // one-rep max
+                for(j=1; j < rows[0].cells.length; j++){
+                    rows[i].cells[j].innerText = (pounds / ((1.0278) - (0.0278 * reps[j]))).toFixed(0)
+                }
+            }
+            // RPE
+            for(i=0; i < rows.length; i++){
+                let RPE = 10
+                for(j=rows[0].cells.length - 1; j > 0; j--){
+                    if(rows[i].cells[j].innerText > oneRPM.value){
+                        rows[i].cells[j].innerText += weight + "\nRPE 10>"
+                    } else if (rows[i].cells[j].innerText == oneRPM.value){
+                        rows[i].cells[j].innerText += weight + "\nRPE 10"
+                    } else {
+                        RPE -= 1
+                        rows[i].cells[j].innerText += weight + "\nRPE " + RPE
+                    }
+                }
+                }
+            
+            document.getElementById("firstTable").style.display = "none";
+            document.getElementById("secondTable").style.display = "table";
+        }
+    })
+</script>
+{% endblock %}

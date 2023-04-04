@@ -1,0 +1,314 @@
+{% extends "base.html" %}
+{% block wilks %}
+
+<section>
+    <br>
+    <div class="content">
+        <div id="menucontainer" class="section-box">
+            <div class="nav-bng border-rad"></div>
+            <nav class="center">
+                <div class="navbar-item border-rad center">
+                    <a href="/" class="navlink fontsize1">One Rep Max Calc</a>
+                </div>
+                <div class="navbar-item center border-rad">
+                    <a href="/percentCalc" class="navlink fontsize1">Percent Calc</a>
+                </div>
+                <div class="selected navbar-item center border-rad">
+                    <a href="/dotsCalc" class="navlink fontsize1">DOTS Calc</a>
+                </div>
+            </nav>
+        </div>
+        <br>
+        <div class="section-box white padding border-rad">
+            <h2 class="left bold fontsize3">DOTS Calculator</h2>
+            <h2 class="left fontsize2">Calculate how well you would do in a powerlifting setting</h2>
+            <h2 class="left fontsize1">The DOTS score is the official ranking measure used in all powerlifting federations. It measures your strength against other powerlifters with different bodyweights and amongst both genders.</h2>
+            <div class="space"></div>
+            <!-- form -->
+            <form id="dotscalc" method="post">
+                <!-- gender-->
+                <div style="display: block; overflow: auto;">
+                    <label style="padding-right: 2%; padding-top: 5px;" class='weight-label divleft fontsize1 bold' for="gender">Gender</label>
+                    <div class="arrow-wrapper"><select class="gender-override divleft border-rad" type="number" id="gender" name="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select></div>
+                    
+                </div>
+                <div class="space"></div>
+                <!-- bw-->
+                <div style="display: block; overflow: auto;">
+                    <label style="padding-right: 2%; padding-top: 5px;" class='weight-label divleft fontsize1 bold' for="weight">Bodyweight</label>
+                    <input class="border-rad-left form-input" type="number" id="weight" name="weight" min='1' max ='400'>
+                    <select class="border-rad-right pound-select" id="bwpound" name="bwpound">
+                        <option value="lbs">lbs</option>
+                        <option value="kg">kg</option>
+                    </select>
+                    
+
+                    
+                </div>
+                <div class="space"></div>
+                <!-- added up or separate-->
+                <div style="display: block; overflow: auto; padding-right:15%; width:600px">
+                    <label style="padding-right: 5%; padding-top: 5px;" class='weight-label divleft fontsize1 bold' for="split">Method</label>
+                    <input class="border-rad radio-input" type="radio" id="split" name="method" value="split" checked> 
+                    <label style="padding: 5px 2% 0px 2%; transform: translate(0px,-14px);" class='fontsize1' for="split">Separately</label>
+                    <input class="border-rad radio-input" type="radio" id="added" name="method" value="added">
+                    <label style="padding: 1px 2% 0px 2%; transform: translate(0px,-14px);" class='fontsize1' for="added">Added Up</label>
+                </div>
+                <div class="space"></div>
+                <!-- separate-->
+                <div class="desc split">
+                    <!--bench-->
+                    <div style="display: block; overflow: auto;">
+                        <label style="padding-right: 2%; padding-top: 5px;" class='weight-label divleft fontsize1 bold' for="bench">Bench Press</label>
+                        <input class="border-rad-left form-input" type="number" id="bench" name="bench" min='1'>
+                        <select class="border-rad-right pound-select" id="benchpound" name="benchpound">
+                            <option value="lbs">lbs</option>
+                            <option value="kg">kg</option>
+                        </select>
+                        
+                       
+                    </div>
+                    <div class="space"></div>
+                    <!-- squat-->
+                    <div style="display: block; overflow: auto;">
+                        <label style="padding-right: 2%; padding-top: 5px;" class='weight-label divleft right fontsize1 bold' for="squat">Squat</label>
+                        <input class="border-rad-left form-input"type="number" id="squat" name="squat" min='1'>
+                        <select class="border-rad-right pound-select" id="squatpound" name="squatpound">
+                            <option value="lbs">lbs</option>
+                            <option value="kg">kg</option>
+                        </select>
+                        
+                        
+                    </div>
+                    <div class="space"></div>
+                    <!-- deadlift-->
+                    
+                    <div style="display: block; overflow: auto;">
+                        <label style="padding-right: 2%; padding-top: 5px;" class='weight-label  divleft fontsize1 bold' for="deadlift">Deadlift</label>   
+                        <input class="border-rad-left form-input" type="number" id="deadlift" name="deadlift" min='1'> 
+                        <select class="border-rad-right pound-select" id="deadliftpound" name="deadliftpound">
+                            <option value="lbs">lbs</option>
+                            <option value="kg">kg</option>
+                        </select>  
+                        
+
+                        
+                        
+                    </div>
+                </div>
+                <!-- added-->
+                <div style="display:none" class="desc added">
+                    <div style="display: block; overflow: auto;">
+                        <div style="display: block; overflow: auto;">
+                            <label style="padding-right: 2%; padding-top: 5px;" class='weight-label  divleft fontsize1 bold' for="lift">Lift</label>   
+                            <input class="border-rad-left form-input" type="number" id="lift" name="lift" min='1'> 
+                            <select class="border-rad-right pound-select" id="liftpound" name="liftpound">
+                                <option value="lbs">lbs</option>
+                                <option value="kg">kg</option>
+                            </select>  
+                        </div>
+                    </div>
+                </div>
+                <!-- classic or equiped-->
+                <div class="space"></div>
+                <button type="submit" class="button divright fontsize1 bold btn btn-primary" value="Submit">Submit</input>
+            </form>
+        </div>
+        <br>
+        <div class="section-box white padding border-rad"> 
+            <!-- table header text -->
+            <h2 id="tableHeader" class="left bold fontsize2">Calculate your DOTS score</h2>
+            <h2 id="tableSubHead" class="left fontsize1">Add up your lifts then run it through the calculator.</h2>
+            <div class="space"></div>
+            <!-- table with content -->
+            <table id="firstTable" class="table-body-font table">
+                <thead style="width:100%">
+                    <tr>
+                        <th style="width:50%">DOTS Score</th>
+                        <th style="width:50%">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>300</td>
+                        <td class="left">A beginner lifter with a good foundation and lots of room to grow</td>
+                    </tr>
+                    <tr>
+                        <td>350-400</td>
+                        <td class="left">A lifter on the same level as powerlifters in nation and state level competition</td>
+                    </tr>
+                    <tr>
+                        <td>450</td>
+                        <td class="left">A national champion level natural lifter</td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td class="left">Most likely to be top 10 in the world in your weight class</td>
+                    </tr>
+                    <tr>
+                        <td>550</td>
+                        <td class="left">The very top 0.01% of all lifters, eg: Taylor Atwood</td>
+                    </tr>
+                    <tr>
+                        <td>600</td>
+                        <td class="left">The worlds greatest power lifters of all time. It is most likely you are not natural.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <!-- average dots score-->
+        <div class="section-box white padding border-rad">
+            <!-- table header text -->
+            <h2 id="tableHeader" class="left bold fontsize2">Average DOTS Score</h2>
+            <h2 id="tableSubHead" class="left fontsize1">The average DOTS score amongst tested powerlifters from all federations (raw).</h2>
+            <div class="space"></div>
+            <!-- average dots score-->
+            <table class="table-body-font table">
+                <thead style="width:100%">
+                    <tr>
+                        <th style="width:33%">Age</th>
+                        <th style="width:33%">Male</th>
+                        <th style="width:33%">Female</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>13-18</td>
+                        <td>307 ± 64</td>
+                        <td>281 ± 61</td>
+                    </tr>
+                    <tr>
+                        <td>19-23</td>
+                        <td>363 ± 55</td>
+                        <td>322 ± 60</td>
+                    </tr>
+                    <tr>
+                        <td>24-39</td>
+                        <td>375 ± 58</td>
+                        <td>330 ± 64</td>
+                    </tr>
+                    <tr>
+                        <td>40-59</td>
+                        <td>342 ± 57</td>
+                        <td>300 ± 60</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</section>
+
+<script>
+    function calcWilks(bodyWeight, weightLifted,isFemale){
+        const maleCoeff = [
+            47.4617885411949,
+            8.47206137941125,
+            0.073694103462609,
+            -1.39583381094385e-3,
+            7.07665973070743e-6,
+            -1.20804336482315e-8,
+        ];
+        const femaleCoeff = [
+            -125.425539779509,
+            13.7121941940668,
+            -0.0330725063103405,
+            -1.0504000506583e-3,
+            9.38773881462799e-6,
+            -2.3334613884954e-8,
+        ];
+        let denom = isFemale ? femaleCoeff[0] : maleCoeff[0]
+        let wilks = isFemale ? femaleCoeff : maleCoeff
+        for (let i = 1; i < wilks.length; i++){
+            denom += wilks[i] * Math.pow(bodyWeight, i)
+        }
+        let score = weightLifted * (600/denom)
+        return score.toFixed(2)
+    }
+    function calcDots(bodyWeight, weightLifted, isFemale){
+        const maleCoeff = [
+            -307.75076,
+            24.0900756,
+            -0.1918759221,
+            0.0007391293,
+            -0.000001093,
+        ];
+        const femaleCoeff = [
+            -57.96288,
+            13.6175032,
+            -0.1126655495,
+            0.0005158568,
+            -0.0000010706,
+        ];
+        let denom = isFemale ? femaleCoeff[0] : maleCoeff[0];
+        let dots = isFemale ? femaleCoeff : maleCoeff;
+        for (let i = 1; i < dots.length; i++){
+            denom += dots[i] * Math.pow(bodyWeight, i)
+        }
+
+        let score = weightLifted * (500/denom)
+        return score.toFixed(2)
+        }
+    // change between split and added
+    $(document).ready(function() {
+        $("input[name$='method']").click(function() {
+            var test = $(this).val();
+
+            $("div.desc").hide();
+            $("." + test).show();
+        });
+    });
+
+    let dotscalc = document.getElementById("dotscalc")
+
+    dotscalc.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let gender = document.getElementById("gender")
+        let weight = document.getElementById("weight").value;
+        var getSelectedValue = document.querySelector('input[name="method"]:checked');   
+        
+        if(weight == ""){
+            alert("add bodyweight")
+            return
+        }
+        var sum;
+        // add up the lifts if it's split
+        if (getSelectedValue.value == "split"){
+            const pounds = [ document.getElementById("squatpound").value, document.getElementById("benchpound").value, document.getElementById("deadliftpound").value]
+            const lifts = [+document.getElementById("squat").value, +document.getElementById("bench").value, +document.getElementById("deadlift").value]
+            for (i=0; i < 3; i++){
+                if (pounds[i] == 'lbs'){
+                    lifts[i] = +(lbtokg(lifts[i]).toFixed(1))
+                }
+            }
+        // add up single lift
+            sum = lifts.reduce((partialSum, a) => partialSum + a, 0)
+        } else {
+            let liftlb = document.getElementById("liftpound").value
+            let lift = document.getElementById("lift").value
+
+            sum = liftlb == "lbs" ? lbtokg(+lift) : +lift
+ 
+        } 
+        let bwpound = document.getElementById("bwpound").value;
+
+        let bodyweight = bwpound == "lbs" ? lbtokg(+weight) : +weight;
+        
+        // IPF formula for dots
+        let wilksTotal = calcWilks(bodyweight, sum, false)
+        let dotsTotal = calcDots(bodyweight, sum, false)
+        
+        let TableHeader = document.getElementById("tableHeader")
+        let TableSubHead = document.getElementById("tableSubHead")
+        TableHeader.innerHTML = 'Your DOTS Score is ' + dotsTotal;
+        TableSubHead.innerHTML = 'From the weight we added from your bench, squat, and deadlifts, we got this DOTS Score. Please note these descriptions are for a natural, adult lifter.'
+    })
+</script>
+
+{% endblock %}
+
